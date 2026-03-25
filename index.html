@@ -124,6 +124,12 @@
       backdrop-filter: blur(8px);
     }
 
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
     .hero-card {
       margin-top: 2px;
       background: linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 100%);
@@ -202,6 +208,54 @@
       color: #d8e6ff;
       font-weight: 600;
       font-size: 12px;
+    }
+
+    .ad-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 100%);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 14px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 18px 46px rgba(0,0,0,0.18);
+    }
+
+    .ad-inner {
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(8, 14, 24, 0.46);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .ad-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #c8dcff;
+    }
+
+    .ad-title {
+      margin: 0 0 8px;
+      font-size: 16px;
+      line-height: 1.4;
+      color: white;
+      font-weight: 700;
+    }
+
+    .ad-text {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .ad-link {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #d8e6ff;
     }
 
     .container {
@@ -400,19 +454,32 @@
         </div>
       </div>
 
-      <div class="hero-card">
-        <div class="thumb">
-          <div class="thumb-top">
-            <div class="thumb-label">LATEST ISSUE</div>
-            <div class="thumb-date">2026.03.25</div>
-            <h3>AI research →<br>agents →<br>systems</h3>
-            <p>
-              自己強化ループ、企業エージェント、分散知能、
-              実行型AIへの移行を読み解く。
-            </p>
+      <div class="hero-right">
+        <div class="hero-card">
+          <div class="thumb">
+            <div class="thumb-top">
+              <div class="thumb-label">LATEST ISSUE</div>
+              <div class="thumb-date">2026.03.25</div>
+              <h3>AI research →<br>agents →<br>systems</h3>
+              <p>
+                自己強化ループ、企業エージェント、分散知能、
+                実行型AIへの移行を読み解く。
+              </p>
+            </div>
+            <div class="thumb-bottom">
+              <a class="thumb-link" href="posts/2026-03-25.html">最新記事を読む →</a>
+            </div>
           </div>
-          <div class="thumb-bottom">
-            <a class="thumb-link" href="posts/2026-03-25.html">最新記事を読む →</a>
+        </div>
+
+        <div class="ad-card">
+          <div class="ad-inner">
+            <div class="ad-label">SPONSORED</div>
+            <h4 class="ad-title">ここに広告タイトル</h4>
+            <p class="ad-text">
+              ここに広告文を入れます。サービス紹介、イベント告知、資料案内などを短く掲載できます。
+            </p>
+            <a class="ad-link" href="#">詳しく見る →</a>
           </div>
         </div>
       </div>
