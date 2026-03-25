@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI INSIGHT JOURNAL</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>週刊AIトレンドレポート</title>
+  <meta name="description" content="論文・ビジネス・生成AI・potts向け視点で整理したAIニュースサイト" />
   <style>
     * {
       box-sizing: border-box;
@@ -11,468 +12,271 @@
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background: linear-gradient(180deg, #eef2f8 0%, #f7f9fc 100%);
-      color: #18202a;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+      background: #f3f6fb;
+      color: #0f172a;
+      line-height: 1.7;
     }
 
     a {
+      color: #2563eb;
       text-decoration: none;
-      color: inherit;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
 
     .hero {
       position: relative;
+      min-height: 430px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
       overflow: hidden;
       background:
-        radial-gradient(circle at top left, rgba(66, 102, 190, 0.12), transparent 30%),
-        radial-gradient(circle at top right, rgba(76, 99, 160, 0.10), transparent 26%),
-        linear-gradient(135deg, #07101d 0%, #0b1526 48%, #101b2f 100%);
-      color: white;
-      padding: 72px 20px 62px;
+        linear-gradient(to bottom, rgba(3, 7, 18, 0.18), rgba(3, 7, 18, 0.5)),
+        url("images/header-bg.png") center center / cover no-repeat;
     }
 
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 82% 14%, rgba(255,255,255,0.18), transparent 24%),
+        linear-gradient(to bottom, rgba(37, 99, 235, 0.03), rgba(2, 6, 23, 0.18));
+      pointer-events: none;
+    }
+
+    /* 右下のひし形を自然に隠す */
     .hero::after {
       content: "";
       position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 42px 42px;
-      opacity: 0.4;
+      right: 0;
+      bottom: 0;
+      width: 190px;
+      height: 190px;
+      background: radial-gradient(
+        circle at 100% 100%,
+        rgba(3, 7, 18, 1) 0%,
+        rgba(3, 7, 18, 0.96) 35%,
+        rgba(3, 7, 18, 0.48) 72%,
+        rgba(3, 7, 18, 0) 100%
+      );
       pointer-events: none;
     }
 
-    .hero-inner {
+    .hero-content {
       position: relative;
-      z-index: 1;
-      max-width: 1120px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 42px;
-      align-items: center;
+      z-index: 2;
+      padding: 40px 20px;
+      max-width: 920px;
     }
 
-    .hero-copy {
-      max-width: 680px;
-    }
-
-    .logo-wrap {
-      display: inline-block;
-      margin-bottom: 24px;
-      padding: 14px 18px;
-      border-radius: 18px;
-      background: rgba(7, 13, 24, 0.42);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-      backdrop-filter: blur(6px);
-    }
-
-    .logo-wrap img {
-      display: block;
-      width: 100%;
-      max-width: 390px;
-      height: auto;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 18px;
-      padding: 9px 15px;
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 999px;
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.84);
-      background: rgba(255,255,255,0.05);
-    }
-
-    .hero h1 {
+    .site-title {
       margin: 0;
-      font-size: clamp(38px, 6vw, 66px);
-      line-height: 1.02;
-      letter-spacing: -0.05em;
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
     }
 
-    .hero p.lead {
-      max-width: 640px;
-      margin: 22px 0 0;
-      font-size: 18px;
-      line-height: 1.95;
-      color: rgba(255,255,255,0.84);
-    }
-
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      padding: 11px 15px;
-      border-radius: 999px;
-      font-size: 14px;
-      color: rgba(255,255,255,0.92);
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.06);
-    }
-
-    .hero-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 30px;
-      padding: 26px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.20);
-    }
-
-    .thumb {
-      min-height: 320px;
-      border-radius: 24px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background:
-        linear-gradient(145deg, #14233f 0%, #1a2f56 52%, #1f3763 100%);
-      border: 1px solid rgba(255,255,255,0.08);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .thumb::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 32px 32px;
-      opacity: 0.35;
-      pointer-events: none;
-    }
-
-    .thumb-top,
-    .thumb-bottom {
-      position: relative;
-      z-index: 1;
-    }
-
-    .thumb-label {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: #b6cbff;
-      margin-bottom: 14px;
-    }
-
-    .thumb-date {
-      font-size: 13px;
-      color: rgba(255,255,255,0.76);
-      margin-bottom: 12px;
-    }
-
-    .thumb h3 {
-      margin: 0;
-      font-size: 31px;
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-      color: white;
-    }
-
-    .thumb p {
+    .site-subtitle {
       margin: 14px 0 0;
-      color: rgba(255,255,255,0.80);
-      line-height: 1.85;
-      font-size: 14px;
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      font-weight: 600;
+      color: rgba(255,255,255,0.92);
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.28);
     }
 
-    .thumb-link {
-      display: inline-block;
-      margin-top: 18px;
-      color: #d2e0ff;
-      font-weight: 600;
-      font-size: 14px;
+    .hero-note {
+      margin-top: 16px;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.78);
     }
 
     .container {
-      max-width: 1120px;
-      margin: -26px auto 0;
-      padding: 0 20px 60px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 22px;
-      margin-bottom: 22px;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.88);
-      border: 1px solid rgba(15, 23, 42, 0.06);
-      border-radius: 24px;
-      padding: 28px;
-      box-shadow: 0 14px 40px rgba(18, 29, 52, 0.08);
-    }
-
-    .card h2 {
-      margin: 0 0 14px;
-      font-size: 28px;
-      letter-spacing: -0.02em;
-      color: #0f1728;
-    }
-
-    .card p {
-      margin: 0;
-      line-height: 1.9;
-      color: #4b5565;
-      font-size: 16px;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 56px 20px 80px;
     }
 
     .section-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 34px 0 18px;
+      margin: 0 0 24px;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 800;
+      color: #0f172a;
     }
 
-    .section-title h3 {
-      margin: 0;
-      font-size: 24px;
-      letter-spacing: -0.02em;
-      color: #0f1728;
+    .section-lead {
+      margin: 0 0 28px;
+      color: #475569;
+      font-size: 1rem;
     }
 
-    .section-title span {
-      font-size: 14px;
-      color: #6b7280;
-    }
-
-    .article-list {
+    .news-list {
       display: grid;
       gap: 18px;
     }
 
-    .article-card {
-      display: block;
-      background: rgba(255,255,255,0.92);
-      border: 1px solid rgba(15, 23, 42, 0.06);
-      border-radius: 22px;
+    .news-card {
+      background: #fff;
+      border: 1px solid #dbe4f0;
+      border-radius: 18px;
       padding: 24px;
-      box-shadow: 0 12px 32px rgba(18, 29, 52, 0.06);
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-      color: inherit;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
 
-    .article-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 38px rgba(18, 29, 52, 0.10);
-      border-color: rgba(39, 84, 197, 0.18);
+    .news-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
     }
 
-    .article-meta {
-      font-size: 13px;
-      font-weight: 700;
-      color: #2754c5;
-      margin-bottom: 10px;
-      letter-spacing: 0.03em;
-    }
-
-    .article-card h4 {
-      margin: 0 0 10px;
-      font-size: 22px;
-      line-height: 1.4;
-      color: #111827;
-      letter-spacing: -0.02em;
-    }
-
-    .article-card p {
-      margin: 0;
-      color: #5b6472;
-      line-height: 1.8;
-      font-size: 15px;
-    }
-
-    .article-link {
+    .news-date {
       display: inline-block;
-      margin-top: 16px;
-      color: #2754c5;
-      font-weight: 600;
-      font-size: 14px;
+      margin-bottom: 10px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #64748b;
     }
 
-    .tag-wrap {
+    .news-title {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      line-height: 1.45;
+      font-weight: 800;
+    }
+
+    .news-summary {
+      margin: 0;
+      color: #334155;
+      font-size: 0.98rem;
+    }
+
+    .buttons {
+      margin-top: 34px;
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 8px;
     }
 
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      padding: 10px 14px;
+    .btn {
+      display: inline-block;
+      padding: 13px 22px;
       border-radius: 999px;
-      background: #eef3ff;
-      color: #2348aa;
-      font-size: 14px;
-      font-weight: 600;
-      border: 1px solid rgba(39, 84, 197, 0.08);
+      font-weight: 700;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      color: #0f172a;
+      transition: all 0.18s ease;
     }
 
-    .footer {
+    .btn:hover {
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      border: none;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.28);
+    }
+
+    .btn-primary:hover {
+      color: #fff;
+    }
+
+    footer {
+      padding: 28px 20px 48px;
       text-align: center;
-      padding: 18px 20px 48px;
-      color: #7a8393;
-      font-size: 14px;
+      color: #64748b;
+      font-size: 0.92rem;
     }
 
-    @media (max-width: 920px) {
-      .hero-inner,
-      .grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 340px;
       }
 
-      .hero {
-        padding: 62px 20px 54px;
+      .hero::after {
+        width: 120px;
+        height: 120px;
       }
 
       .container {
-        margin-top: -16px;
+        padding-top: 42px;
       }
 
-      .thumb {
-        min-height: 260px;
-      }
-
-      .logo-wrap img {
-        max-width: 300px;
-      }
-
-      .hero-copy {
-        max-width: 100%;
+      .news-card {
+        padding: 20px;
       }
     }
   </style>
 </head>
 <body>
+
   <header class="hero">
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <div class="logo-wrap">
-          <img src="images/logo-ai-insight-journal.png" alt="AI INSIGHT JOURNAL logo">
-        </div>
-
-        <div class="eyebrow">SIGNALS / STRATEGY / INTERPRETATION</div>
-        <h1>AIの変化を、<br>情報ではなく意味として届ける。</h1>
-        <p class="lead">
-          研究・産業・生成AI・AI哲学を横断しながら、
-          ただ追うだけでは見えない流れを、日本語で整理し、解釈し、接続するメディア。
-        </p>
-
-        <div class="hero-tags">
-          <span class="hero-tag">研究ブレークスルー</span>
-          <span class="hero-tag">ビジネス / 産業動向</span>
-          <span class="hero-tag">生成AI</span>
-          <span class="hero-tag">AI哲学</span>
-        </div>
-      </div>
-
-      <div class="hero-card">
-        <div class="thumb">
-          <div class="thumb-top">
-            <div class="thumb-label">LATEST ISSUE</div>
-            <div class="thumb-date">2026.03.25</div>
-            <h3>AI research →<br>agents →<br>systems</h3>
-            <p>
-              自己強化ループ、企業エージェント、分散知能、
-              実行型AIへの移行を読み解く。
-            </p>
-          </div>
-          <div class="thumb-bottom">
-            <a class="thumb-link" href="posts/2026-03-25.html">最新記事を読む →</a>
-          </div>
-        </div>
-      </div>
+    <div class="hero-content">
+      <h1 class="site-title">週刊AIトレンドレポート</h1>
+      <p class="site-subtitle">最新のAIニュースを、毎日わかりやすく整理</p>
+      <p class="hero-note">論文 / ビジネス / 生成AI / potts向け の4視点で更新</p>
     </div>
   </header>
 
   <main class="container">
-    <section class="grid">
-      <div class="card">
-        <h2>About</h2>
-        <p>
-          AI INSIGHT JOURNAL は、AIニュースをただ並べる場所ではありません。
-          情報を編集し、意味を与え、戦略へつなぐための読み物として設計しています。
-        </p>
-      </div>
-
-      <div class="card">
-        <h2>Focus</h2>
-        <p>
-          これから重要なのは、最速で追うことより、正しく読むこと。
-          研究の変化、業界構造、制作環境、思想の接続までを扱います。
-        </p>
-      </div>
-    </section>
-
     <section>
-      <div class="section-title">
-        <h3>Latest Posts</h3>
-        <span>Archive</span>
-      </div>
+      <h2 class="section-title">最新記事</h2>
+      <p class="section-lead">
+        毎日の注目ニュースを、日本語で読みやすく要約して掲載しています。
+      </p>
 
-      <div class="article-list">
-        <a class="article-card" href="posts/2026-03-25.html">
-          <div class="article-meta">2026-03-25</div>
-          <h4>AI研究の自己強化ループとエージェント時代の加速</h4>
-          <p>
-            研究ブレークスルー、企業のエージェントOS化、生成AIの進化、
-            そしてAIを設計する側へ移るための戦略インサイトを整理。
+      <div class="news-list">
+        <article class="news-card">
+          <span class="news-date">2026-03-24</span>
+          <h3 class="news-title">
+            <a href="posts/2026-03-24.html">2026年3月24日のAIトレンドまとめ</a>
+          </h3>
+          <p class="news-summary">
+            研究・ビジネス・生成AI・potts向け注目項目を、日次アーカイブとして整理したページです。
           </p>
-          <span class="article-link">記事を読む →</span>
-        </a>
+        </article>
 
-        <a class="article-card" href="posts/2026-03-24.html">
-          <div class="article-meta">2026-03-24</div>
-          <h4>分散知能、実行型エージェント、OS統合へ進むAI</h4>
-          <p>
-            単一モデル中心の限界、専門AIの連携、OSレイヤーへの統合、
-            そしてカスタムAI時代の始まりを整理した日次アーカイブ。
+        <article class="news-card">
+          <span class="news-date">2026-03-23</span>
+          <h3 class="news-title">
+            <a href="posts/2026-03-23.html">2026年3月23日のAIトレンドまとめ</a>
+          </h3>
+          <p class="news-summary">
+            前日の注目AIニュースを一覧化。過去記事の蓄積用サンプルとして使えます。
           </p>
-          <span class="article-link">記事を読む →</span>
-        </a>
-      </div>
-    </section>
+        </article>
 
-    <section>
-      <div class="section-title">
-        <h3>Topics</h3>
-        <span>Coverage</span>
+        <article class="news-card">
+          <span class="news-date">2026-03-22</span>
+          <h3 class="news-title">
+            <a href="posts/2026-03-22.html">2026年3月22日のAIトレンドまとめ</a>
+          </h3>
+          <p class="news-summary">
+            ニュースポータル型に育てていくためのアーカイブ記事サンプルです。
+          </p>
+        </article>
       </div>
 
-      <div class="card">
-        <div class="tag-wrap">
-          <span class="tag">論文</span>
-          <span class="tag">ビジネス</span>
-          <span class="tag">生成AI</span>
-          <span class="tag">AI哲学</span>
-        </div>
+      <div class="buttons">
+        <a class="btn btn-primary" href="archive.html">過去ニュースを見る</a>
+        <a class="btn" href="about.html">このサイトについて</a>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    © 2026 AI INSIGHT JOURNAL
+  <footer>
+    © 2026 週刊AIトレンドレポート
   </footer>
+
 </body>
 </html>
