@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI INSIGHT JOURNAL</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -54,9 +52,7 @@
       align-items: start;
     }
 
-    .hero-left {
-      padding-top: 4px;
-    }
+    .hero-left { padding-top: 4px; }
 
     .logo-mark {
       display: flex;
@@ -146,23 +142,13 @@
       padding: 16px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-end;
       background:
-        linear-gradient(180deg, rgba(8, 14, 24, 0.34), rgba(8, 14, 24, 0.62)),
-        url("images/header-bg.png") center center / cover no-repeat;
+        linear-gradient(180deg, rgba(8, 14, 24, 0.10), rgba(8, 14, 24, 0.70)),
+        url("images/cover-2026-03-25.png") center center / cover no-repeat;
       border: 1px solid rgba(255,255,255,0.10);
       position: relative;
       overflow: hidden;
-    }
-
-    .thumb::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top right, rgba(130, 173, 255, 0.12), transparent 26%),
-        radial-gradient(circle at bottom left, rgba(147, 112, 219, 0.08), transparent 22%);
-      pointer-events: none;
     }
 
     .thumb-top,
@@ -233,6 +219,14 @@
       font-weight: 700;
       letter-spacing: 0.12em;
       color: #c8dcff;
+    }
+
+    .ad-banner {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
     .ad-title {
@@ -387,8 +381,31 @@
       border: 1px solid rgba(39, 84, 197, 0.08);
     }
 
-    .coverage-text {
-      margin-top: 16px !important;
+    .coverage-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .coverage-item {
+      padding: 14px;
+      border-radius: 16px;
+      background: #f7faff;
+      border: 1px solid rgba(39, 84, 197, 0.08);
+    }
+
+    .coverage-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: #2348aa;
+    }
+
+    .coverage-item p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: #556070;
     }
 
     .footer {
@@ -400,7 +417,8 @@
 
     @media (max-width: 920px) {
       .hero-inner,
-      .grid {
+      .grid,
+      .coverage-grid {
         grid-template-columns: 1fr;
       }
 
@@ -479,6 +497,7 @@
         <div class="ad-card">
           <div class="ad-inner">
             <div class="ad-label">SPONSORED</div>
+            <img class="ad-banner" src="images/ad-banner.png" alt="広告バナー">
             <h4 class="ad-title">ここに広告タイトル</h4>
             <p class="ad-text">
               ここに広告文を入れます。サービス紹介、イベント告知、資料案内などを短く掲載できます。
@@ -553,10 +572,25 @@
           <span class="tag">生成AI</span>
           <span class="tag">AI哲学</span>
         </div>
-        <p class="coverage-text">
-          このサイトでは、研究の進展、産業構造の変化、生成AIツールの進化、
-          そしてAIをどう解釈し社会や表現に接続するかまでを、編集視点で横断的に扱います。
-        </p>
+
+        <div class="coverage-grid">
+          <div class="coverage-item">
+            <strong>論文</strong>
+            <p>研究ブレークスルーや新しい技術的論点を整理します。</p>
+          </div>
+          <div class="coverage-item">
+            <strong>ビジネス</strong>
+            <p>企業戦略、産業構造、導入トレンドの変化を追います。</p>
+          </div>
+          <div class="coverage-item">
+            <strong>生成AI</strong>
+            <p>ツール、制作環境、マルチモーダル表現の進化を扱います。</p>
+          </div>
+          <div class="coverage-item">
+            <strong>AI哲学</strong>
+            <p>AIを社会・思想・創作へどう接続するかを考えます。</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
