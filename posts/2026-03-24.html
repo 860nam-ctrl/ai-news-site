@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2026-03-24 のAIニュース</title>
+  <title>2026-03-24 のAIニュース | AI INSIGHT JOURNAL</title>
   <style>
     * {
       box-sizing: border-box;
@@ -29,113 +29,129 @@
     .hero {
       position: relative;
       overflow: hidden;
-      background:
-        radial-gradient(circle at top left, rgba(90, 138, 255, 0.18), transparent 32%),
-        radial-gradient(circle at top right, rgba(111, 66, 193, 0.18), transparent 28%),
-        linear-gradient(135deg, #06080d 0%, #0c1220 45%, #121a2d 100%);
       color: white;
-      padding: 72px 20px 58px;
+      padding: 38px 20px 26px;
+      background:
+        linear-gradient(rgba(6, 10, 18, 0.50), rgba(6, 10, 18, 0.66)),
+        url("../images/header-bg.png") center center / cover no-repeat;
     }
 
     .hero::after {
       content: "";
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 36px 36px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.2));
+      background:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: 0.18;
       pointer-events: none;
     }
 
     .hero-inner {
       position: relative;
       z-index: 1;
-      max-width: 1000px;
+      max-width: 980px;
       margin: 0 auto;
+    }
+
+    .logo-mark {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 10px;
+      margin-left: -20px;
+    }
+
+    .logo-mark img {
+      max-width: 760px;
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     .eyebrow {
       display: inline-block;
-      margin-bottom: 16px;
-      padding: 8px 14px;
+      margin-bottom: 10px;
+      padding: 7px 12px;
       border: 1px solid rgba(255,255,255,0.16);
       border-radius: 999px;
-      font-size: 13px;
-      letter-spacing: 0.08em;
+      font-size: 11px;
+      letter-spacing: 0.10em;
       color: rgba(255,255,255,0.86);
-      backdrop-filter: blur(6px);
-      background: rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(8px);
     }
 
     .hero h1 {
       margin: 0;
-      font-size: clamp(34px, 5vw, 56px);
-      line-height: 1.08;
+      max-width: 760px;
+      font-size: clamp(26px, 3.2vw, 38px);
+      line-height: 1.16;
       letter-spacing: -0.03em;
+      font-weight: 700;
+      text-shadow: 0 8px 24px rgba(0,0,0,0.20);
     }
 
     .hero p.lead {
       max-width: 760px;
-      margin: 18px 0 0;
-      font-size: 17px;
-      line-height: 1.9;
-      color: rgba(255,255,255,0.82);
+      margin: 12px 0 0;
+      font-size: 14px;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.86);
+      text-shadow: 0 4px 16px rgba(0,0,0,0.18);
     }
 
     .hero-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 24px;
+      gap: 8px;
+      margin-top: 16px;
     }
 
     .hero-tag {
       display: inline-flex;
       align-items: center;
-      padding: 10px 14px;
+      padding: 8px 11px;
       border-radius: 999px;
-      font-size: 14px;
-      color: rgba(255,255,255,0.92);
+      font-size: 12px;
+      color: rgba(255,255,255,0.94);
       border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(8px);
     }
 
     .back-link {
       display: inline-block;
-      margin-top: 22px;
-      color: #9ecbff;
+      margin-top: 16px;
+      color: #d8e6ff;
+      font-size: 13px;
       font-weight: 600;
-      font-size: 14px;
     }
 
     .container {
-      max-width: 1000px;
-      margin: -28px auto 0;
-      padding: 0 20px 60px;
-      position: relative;
-      z-index: 2;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 18px 20px 60px;
     }
 
     .intro-card,
     .section-card,
     .summary-card {
-      background: rgba(255,255,255,0.88);
+      background: rgba(255,255,255,0.92);
       border: 1px solid rgba(15, 23, 42, 0.06);
       backdrop-filter: blur(10px);
       border-radius: 24px;
-      padding: 28px;
+      padding: 26px;
       box-shadow: 0 14px 40px rgba(18, 29, 52, 0.08);
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .intro-card h2,
     .section-card h2,
     .summary-card h2 {
       margin: 0 0 14px;
-      font-size: 28px;
+      font-size: 26px;
       letter-spacing: -0.02em;
       color: #0f1728;
     }
@@ -145,24 +161,25 @@
     .summary-card p {
       margin: 0 0 12px;
       color: #4b5565;
-      font-size: 16px;
+      font-size: 15px;
+      line-height: 1.9;
     }
 
     .section-title {
       display: inline-flex;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       padding: 8px 12px;
       border-radius: 999px;
       background: #edf3ff;
       color: #2754c5;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
     }
 
     .news-block {
-      padding: 22px 0;
+      padding: 20px 0;
       border-top: 1px solid rgba(15, 23, 42, 0.08);
     }
 
@@ -174,7 +191,7 @@
     .news-meta {
       display: inline-block;
       margin-bottom: 10px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       color: #2754c5;
       background: #edf3ff;
@@ -184,8 +201,8 @@
 
     .news-block h3 {
       margin: 0 0 12px;
-      font-size: 24px;
-      line-height: 1.45;
+      font-size: 23px;
+      line-height: 1.42;
       letter-spacing: -0.02em;
       color: #111827;
     }
@@ -229,11 +246,11 @@
     .summary-card {
       background:
         radial-gradient(circle at top right, rgba(90, 138, 255, 0.10), transparent 35%),
-        rgba(255,255,255,0.9);
+        rgba(255,255,255,0.92);
     }
 
     .highlight {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 700;
       color: #0f1728;
       line-height: 1.7;
@@ -246,13 +263,26 @@
       font-size: 14px;
     }
 
-    @media (max-width: 840px) {
+    @media (max-width: 920px) {
       .hero {
-        padding: 60px 20px 48px;
+        padding: 30px 20px 22px;
       }
 
-      .container {
-        margin-top: -20px;
+      .logo-mark {
+        margin-left: -8px;
+      }
+
+      .logo-mark img {
+        max-width: 420px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+        max-width: 100%;
+      }
+
+      .hero p.lead {
+        font-size: 14px;
       }
 
       .intro-card,
@@ -269,11 +299,7 @@
       .intro-card h2,
       .section-card h2,
       .summary-card h2 {
-        font-size: 24px;
-      }
-
-      .hero p.lead {
-        font-size: 16px;
+        font-size: 23px;
       }
     }
   </style>
@@ -281,18 +307,24 @@
 <body>
   <header class="hero">
     <div class="hero-inner">
+      <div class="logo-mark">
+        <img src="../images/logo-ai-insight-journal-simple.png" alt="AI INSIGHT JOURNAL logo">
+      </div>
+
       <div class="eyebrow">DAILY AI DIGEST</div>
       <h1>2026-03-24 のAIニュース</h1>
       <p class="lead">
         単一モデル中心の時代から、分散知能・実行型エージェント・OS統合型AIへ。
         今日のAI動向を、研究・業界・生成AI・戦略の観点から整理した日次アーカイブ。
       </p>
+
       <div class="hero-meta">
         <span class="hero-tag">研究ブレークスルー</span>
         <span class="hero-tag">業界動向</span>
         <span class="hero-tag">生成AIツール</span>
         <span class="hero-tag">AI哲学 / 戦略</span>
       </div>
+
       <a class="back-link" href="../index.html">← トップへ戻る</a>
     </div>
   </header>
@@ -568,7 +600,7 @@
 
   <footer class="footer">
     <p><a href="../index.html">トップページへ戻る</a></p>
-    <p>© 2026 AI Trend Report</p>
+    <p>© 2026 AI INSIGHT JOURNAL</p>
   </footer>
 </body>
 </html>
