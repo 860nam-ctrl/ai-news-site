@@ -5,93 +5,570 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2026-03-24 のAIニュース</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background: #f7f7f7;
-      color: #222;
-    }
-
-    header {
-      background: #111;
-      color: white;
-      padding: 32px 20px;
-      text-align: center;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 14px;
-      padding: 24px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
-
-    .meta {
-      color: #666;
-      font-size: 14px;
-      margin-bottom: 8px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(180deg, #eef2f8 0%, #f7f9fc 100%);
+      color: #18202a;
+      line-height: 1.85;
     }
 
     a {
-      color: #9ecbff;
       text-decoration: none;
+      color: #2754c5;
     }
 
     a:hover {
       text-decoration: underline;
     }
 
-    .source {
-      margin-top: 12px;
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(90, 138, 255, 0.18), transparent 32%),
+        radial-gradient(circle at top right, rgba(111, 66, 193, 0.18), transparent 28%),
+        linear-gradient(135deg, #06080d 0%, #0c1220 45%, #121a2d 100%);
+      color: white;
+      padding: 72px 20px 58px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.2));
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 999px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.86);
+      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p.lead {
+      max-width: 760px;
+      margin: 18px 0 0;
+      font-size: 17px;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.92);
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(6px);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 22px;
+      color: #9ecbff;
+      font-weight: 600;
       font-size: 14px;
     }
 
-    .source a {
-      color: #0b57d0;
+    .container {
+      max-width: 1000px;
+      margin: -28px auto 0;
+      padding: 0 20px 60px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .intro-card,
+    .section-card,
+    .summary-card {
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 14px 40px rgba(18, 29, 52, 0.08);
+      margin-bottom: 22px;
+    }
+
+    .intro-card h2,
+    .section-card h2,
+    .summary-card h2 {
+      margin: 0 0 14px;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+      color: #0f1728;
+    }
+
+    .intro-card p,
+    .section-card p,
+    .summary-card p {
+      margin: 0 0 12px;
+      color: #4b5565;
+      font-size: 16px;
+    }
+
+    .section-title {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #edf3ff;
+      color: #2754c5;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .news-block {
+      padding: 22px 0;
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
+    }
+
+    .news-block:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .news-meta {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #2754c5;
+      background: #edf3ff;
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+
+    .news-block h3 {
+      margin: 0 0 12px;
+      font-size: 24px;
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+      color: #111827;
+    }
+
+    .point-box {
+      margin-top: 16px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+      border: 1px solid rgba(39, 84, 197, 0.08);
+    }
+
+    .point-box strong {
+      display: block;
+      margin-bottom: 10px;
+      color: #2348aa;
+      font-size: 14px;
+    }
+
+    ul {
+      margin: 0 0 12px;
+      padding-left: 20px;
+      color: #4b5565;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .source {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #5b6472;
+      word-break: break-all;
+    }
+
+    .source strong {
+      color: #111827;
+    }
+
+    .summary-card {
+      background:
+        radial-gradient(circle at top right, rgba(90, 138, 255, 0.10), transparent 35%),
+        rgba(255,255,255,0.9);
+    }
+
+    .highlight {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f1728;
+      line-height: 1.7;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 18px 20px 48px;
+      color: #7a8393;
+      font-size: 14px;
+    }
+
+    @media (max-width: 840px) {
+      .hero {
+        padding: 60px 20px 48px;
+      }
+
+      .container {
+        margin-top: -20px;
+      }
+
+      .intro-card,
+      .section-card,
+      .summary-card {
+        padding: 22px;
+        border-radius: 20px;
+      }
+
+      .news-block h3 {
+        font-size: 21px;
+      }
+
+      .intro-card h2,
+      .section-card h2,
+      .summary-card h2 {
+        font-size: 24px;
+      }
+
+      .hero p.lead {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>2026-03-24 のAIニュース</h1>
-    <p><a href="../index.html">← トップへ戻る</a></p>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">DAILY AI DIGEST</div>
+      <h1>2026-03-24 のAIニュース</h1>
+      <p class="lead">
+        単一モデル中心の時代から、分散知能・実行型エージェント・OS統合型AIへ。
+        今日のAI動向を、研究・業界・生成AI・戦略の観点から整理した日次アーカイブ。
+      </p>
+      <div class="hero-meta">
+        <span class="hero-tag">研究ブレークスルー</span>
+        <span class="hero-tag">業界動向</span>
+        <span class="hero-tag">生成AIツール</span>
+        <span class="hero-tag">AI哲学 / 戦略</span>
+      </div>
+      <a class="back-link" href="../index.html">← トップへ戻る</a>
+    </div>
   </header>
 
-  <main>
-    <div class="card">
-      <div class="meta">論文</div>
-      <h2>ここに論文ニュースのタイトル</h2>
-      <p>ここに論文ニュースの要約を入れます。</p>
-      <p class="source"><strong>ソース:</strong> <a href="#" target="_blank" rel="noopener noreferrer">ここにURLを入れる</a></p>
-    </div>
+  <main class="container">
+    <section class="intro-card">
+      <h2>今日の概要</h2>
+      <p>
+        今日のAIトレンドは、巨大で万能な1つのモデルを追い求める流れから、
+        複数の専門AIが連携する「分散型知能システム」へ重心が移りつつあることを示している。
+        さらに、AIはコンテンツ生成だけでなく実行まで担うエージェントへ進化し、
+        OSレイヤーへの統合やカスタムAIの量産も現実味を帯びてきた。
+      </p>
+    </section>
 
-    <div class="card">
-      <div class="meta">ビジネス</div>
-      <h2>ここにビジネスニュースのタイトル</h2>
-      <p>ここにビジネスニュースの要約を入れます。</p>
-      <p class="source"><strong>ソース:</strong> <a href="#" target="_blank" rel="noopener noreferrer">ここにURLを入れる</a></p>
-    </div>
+    <section class="section-card">
+      <div class="section-title">① 研究ブレークスルー</div>
 
-    <div class="card">
-      <div class="meta">生成AI</div>
-      <h2>ここに生成AIニュースのタイトル</h2>
-      <p>ここに生成AIニュースの要約を入れます。</p>
-      <p class="source"><strong>ソース:</strong> <a href="#" target="_blank" rel="noopener noreferrer">ここにURLを入れる</a></p>
-    </div>
+      <article class="news-block">
+        <div class="news-meta">研究</div>
+        <h3>生成AIは「単一モデル」から「分散知能（DSS）」へ</h3>
+        <p>
+          最新論文では、巨大モデル中心の進化に限界が見え始め、
+          代替としてドメイン特化型AIの集合で構成される
+          Domain-Specific Superintelligence という新しい方向性が提案された。
+          複数の小型AIが連携し、タスクごとに最適なモデルを切り替える構造である。
+        </p>
+        <div class="point-box">
+          <strong>示唆</strong>
+          1つのAIに依存せず、専門AIの組み合わせで制作する発想が重要になる。
+          映像AI・コピーAI・戦略AIを分離して最適化することで、
+          AI制作チームの精度を大きく引き上げられる。
+        </div>
+        <p class="source">
+          <strong>Source URL:</strong>
+          <a href="https://arxiv.org/abs/2603.14147" target="_blank" rel="noopener noreferrer">
+            https://arxiv.org/abs/2603.14147
+          </a>
+        </p>
+      </article>
 
-    <div class="card">
-      <div class="meta">思想・哲学</div>
-      <h2>ここに思想・哲学系ニュースのタイトル</h2>
-      <p>ここに思想・哲学系ニュースの要約を入れます。</p>
-      <p class="source"><strong>ソース:</strong> <a href="#" target="_blank" rel="noopener noreferrer">ここにURLを入れる</a></p>
-    </div>
+      <article class="news-block">
+        <div class="news-meta">研究</div>
+        <h3>AI生成コンテンツは学術領域でも急増</h3>
+        <p>
+          最新分析では、医学論文におけるAI生成テキストの割合が急増しており、
+          2022年にはほぼゼロだったものが、2025年には11%に達したとされる。
+          知的生産そのものにAIが深く浸透し始めていることが示された。
+        </p>
+        <div class="point-box">
+          <strong>示唆</strong>
+          企画書・提案資料・コピーのAI生成は今後さらに標準化していく。
+          差別化の中心は「アイデア設計」と「編集力」へ移行する。
+        </div>
+        <p class="source">
+          <strong>Source URL:</strong>
+          <a href="https://arxiv.org/abs/2603.19316" target="_blank" rel="noopener noreferrer">
+            https://arxiv.org/abs/2603.19316
+          </a>
+        </p>
+      </article>
+
+      <article class="news-block">
+        <div class="news-meta">研究トレンド</div>
+        <h3>AIは「生成」から「実行するエージェント」へ</h3>
+        <p>
+          最新動向では、生成AIとエージェントAIの違いがより明確になっている。
+          生成AIはコンテンツを作る存在であり、
+          エージェントAIはタスクを実行する存在である。
+          現在は後者への移行が急速に進んでいる。
+        </p>
+        <ul>
+          <li>生成AI：コンテンツを作る</li>
+          <li>エージェントAI：タスクを実行する</li>
+        </ul>
+        <div class="point-box">
+          <strong>示唆</strong>
+          AIを制作補助ではなく「制作実行者」として設計する段階に入っている。
+          リサーチから制作、納品までの自動化が現実的になる。
+        </div>
+        <p class="source">
+          <strong>Source URL:</strong>
+          <a href="https://bostoninstituteofanalytics.org/blog/generative-ai-agentic-ai-weekly-update-28-feb-6-mar-2026-latest-news-breakthroughs-industry-trends/" target="_blank" rel="noopener noreferrer">
+            https://bostoninstituteofanalytics.org/blog/generative-ai-agentic-ai-weekly-update-28-feb-6-mar-2026-latest-news-breakthroughs-industry-trends/
+          </a>
+        </p>
+      </article>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">② 業界動向</div>
+
+      <article class="news-block">
+        <div class="news-meta">業界動向</div>
+        <h3>Apple × Google連携で次世代AIアシスタント強化</h3>
+        <p>
+          Appleは次世代Siriにおいて、Googleの大規模モデル Gemini を活用する戦略を進めている。
+          プライバシー重視の設計と高性能モデルの統合が特徴で、
+          OSレベルでのAI統合競争が激化している。
+        </p>
+        <div class="point-box">
+          <strong>示唆</strong>
+          AIは個別アプリではなく「OSレイヤー」へ移行していく。
+          クリエイティブ制作も、単発ツールではなく統合環境で考える時代に近づいている。
+        </div>
+        <p class="source">
+          <strong>Source URL:</strong>
+          <a href="https://www.crescendo.ai/news/latest-ai-news-and-updates" target="_blank" rel="noopener noreferrer">
+            https://www.crescendo.ai/news/latest-ai-news-and-updates
+          </a>
+        </p>
+      </article>
+
+      <article class="news-block">
+        <div class="news-meta">業界動向</div>
+        <h3>AI導入は「収益向上とコスト削減」の両輪へ</h3>
+        <p>
+          最新レポートでは、AIは売上増加、コスト削減、生産性向上のすべてに寄与しており、
+          ほぼ全業界で本格導入フェーズに入っていることが示された。
+        </p>
+        <ul>
+          <li>売上増加</li>
+          <li>コスト削減</li>
+          <li>生産性向上</li>
+        </ul>
+        <div class="point-box">
+          <strong>示唆</strong>
+          AIはクリエイティブ用途に留まらず、経営ツールとしても中核化している。
+          制作効率とビジネス成果の両方を最適化する視点が必要になる。
+        </div>
+        <p class="source">
+          <strong>Source URL:</strong>
+          <a href="https://blogs.nvidia.com/blog/state-of-ai-report-2026/" target="_blank" rel="noopener noreferrer">
+            https://blogs.nvidia.com/blog/state-of-ai-report-2026/
+          </a>
+        </p>
+      </article>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">③ 新しい生成AIツール / 技術</div>
+
+      <article class="news-block">
+        <div class="news-meta">生成AIツール</div>
+        <h3>Googleの次世代モデル群が公開</h3>
+        <p>
+          Googleは Gemini 3.1 Pro、Lyria 3、Deep Think などを発表し、
+          マルチモーダルと推論強化型AIを一気に拡張した。
+          テキストだけでなく音楽や高度推論まで統合する流れが進んでいる。
+        </p>
+        <div class="point-box">
+          <strong>示唆</strong>
+          音楽・映像・テキストを統合した制作がさらに加速する。
+          AIを使った「総合演出」が実装可能なフェーズに入っている。
+        </div>
+        <p class="source">
+          <strong>Source URL:</strong>
+          <a href="https://blog.google/innovation-and-ai/products/google-ai-updates-february-2026/" target="_blank" rel="noopener noreferrer">
+            https://blog.google/innovation-and-ai/products/google-ai-updates-february-2026/
+          </a>
+        </p>
+      </article>
+
+      <article class="news-block">
+        <div class="news-meta">新ツール / 技術</div>
+        <h3>LoRA自動生成でカスタムAIが簡易化</h3>
+        <p>
+          Sakana AIは、文書やテキストからLoRA（軽量モデル）を即時生成する技術を公開した。
+          従来のような重いファインチューニングを行わなくても、
+          モデルを素早くカスタマイズできる可能性がある。
+        </p>
+        <div class="point-box">
+          <strong>示唆</strong>
+          ブランド専用AIモデルの高速構築が現実的になる。
+          クライアントごとに最適化されたAI制作環境も作りやすくなる。
+        </div>
+        <p class="source">
+          <strong>Source URL:</strong>
+          <a href="https://radicaldatascience.wordpress.com/2026/03/12/ai-news-briefs-bulletin-board-for-march-2026/" target="_blank" rel="noopener noreferrer">
+            https://radicaldatascience.wordpress.com/2026/03/12/ai-news-briefs-bulletin-board-for-march-2026/
+          </a>
+        </p>
+      </article>
+
+      <article class="news-block">
+        <div class="news-meta">生成AIトレンド</div>
+        <h3>トップアプリは「クリエイティブ領域」で進化</h3>
+        <p>
+          最新ランキングでは、画像・動画・デザイン系AIが依然として主要カテゴリでありつつ、
+          動画・音声などマルチモーダル領域が急成長している。
+        </p>
+        <div class="point-box">
+          <strong>示唆</strong>
+          次の主戦場は動画生成と音声生成であり、
+          体験型コンテンツの重要性がさらに高まる。
+        </div>
+        <p class="source">
+          <strong>Source URL:</strong>
+          <a href="https://www.a16z.news/p/top-100-gen-ai-consumer-apps-march" target="_blank" rel="noopener noreferrer">
+            https://www.a16z.news/p/top-100-gen-ai-consumer-apps-march
+          </a>
+        </p>
+      </article>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">④ 今日の戦略インサイト</div>
+
+      <article class="news-block">
+        <div class="news-meta">戦略インサイト</div>
+        <h3>AIは「巨大モデル」から「分散型チーム」へ</h3>
+        <p>
+          1つの万能モデルを追うよりも、
+          専門AIを組み合わせた分散型チームの方が実務上の最適解になりつつある。
+        </p>
+      </article>
+
+      <article class="news-block">
+        <div class="news-meta">戦略インサイト</div>
+        <h3>AIは“生成”から“実行”へ進化</h3>
+        <p>
+          これからの鍵は、AIにアウトプットを作らせるだけではなく、
+          プロジェクト全体を丸ごと任せる設計にある。
+        </p>
+      </article>
+
+      <article class="news-block">
+        <div class="news-meta">戦略インサイト</div>
+        <h3>AIはOSレイヤーに統合される時代へ</h3>
+        <p>
+          重要なのはツールを選ぶことよりも、
+          どんな制作環境・作業環境を設計するかという視点になる。
+        </p>
+      </article>
+
+      <article class="news-block">
+        <div class="news-meta">戦略インサイト</div>
+        <h3>カスタムAIが簡単に作れる時代へ</h3>
+        <p>
+          独自AIを持つことそのものが、
+          今後の競争優位の源泉になっていく可能性が高い。
+        </p>
+      </article>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">⑤ アクション提案</div>
+
+      <article class="news-block">
+        <div class="news-meta">実装案</div>
+        <h3>次に設計すべきこと</h3>
+        <ul>
+          <li>AI制作チーム（専門AI分業型）の構築</li>
+          <li>ブランド専用AIモデルの開発（LoRA活用）</li>
+          <li>AI統合ワークスペースの設計</li>
+          <li>映像 × 音楽 × コピーの統合制作パイプライン構築</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="summary-card">
+      <h2>結論</h2>
+      <p class="highlight">
+        AIは今、  
+        「1つの賢いモデル」から「複数のAIが連携する知能システム」へ進化している。
+      </p>
+      <p>
+        これから重要になるのは、最強の単体モデルを探すことではなく、
+        目的に応じてAI群をどう編成し、どう働かせるかという設計力だ。
+      </p>
+    </section>
   </main>
+
+  <footer class="footer">
+    <p><a href="../index.html">トップページへ戻る</a></p>
+    <p>© 2026 AI Trend Report</p>
+  </footer>
 </body>
 </html>
