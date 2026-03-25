@@ -18,14 +18,15 @@
 
     a {
       text-decoration: none;
+      color: inherit;
     }
 
     .hero {
       position: relative;
       overflow: hidden;
       background:
-        radial-gradient(circle at top left, rgba(90, 138, 255, 0.18), transparent 32%),
-        radial-gradient(circle at top right, rgba(111, 66, 193, 0.18), transparent 28%),
+        radial-gradient(circle at top left, rgba(90, 138, 255, 0.14), transparent 32%),
+        radial-gradient(circle at top right, rgba(111, 66, 193, 0.12), transparent 28%),
         linear-gradient(135deg, #05070c 0%, #0b1220 45%, #121b30 100%);
       color: white;
       padding: 80px 20px 68px;
@@ -36,8 +37,8 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
       background-size: 36px 36px;
       mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.2));
       pointer-events: none;
@@ -57,45 +58,14 @@
     .logo-mark {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
       margin-bottom: 22px;
     }
 
-    .logo-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #78a6ff 0%, #9b7cff 100%);
-      box-shadow: 0 10px 24px rgba(120, 166, 255, 0.32);
-      position: relative;
-    }
-
-    .logo-icon::before {
-      content: "";
-      position: absolute;
-      inset: 9px;
-      border: 1.5px solid rgba(255,255,255,0.8);
-      border-radius: 10px;
-    }
-
-    .logo-text {
-      line-height: 1.1;
-    }
-
-    .logo-text .small {
+    .logo-mark img {
+      max-width: 460px;
+      width: 100%;
+      height: auto;
       display: block;
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 4px;
-    }
-
-    .logo-text .big {
-      display: block;
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      color: white;
     }
 
     .eyebrow {
@@ -379,6 +349,10 @@
       .thumb {
         min-height: 260px;
       }
+
+      .logo-mark img {
+        max-width: 320px;
+      }
     }
   </style>
 </head>
@@ -386,9 +360,9 @@
   <header class="hero">
     <div class="hero-inner">
       <div>
-       <div class="logo-mark image-logo">
-  <img src="images/logo-ai-insight-journal.png" alt="AI INSIGHT JOURNAL logo">
-</div>
+        <div class="logo-mark">
+          <img src="images/logo-ai-insight-journal.png" alt="AI INSIGHT JOURNAL logo">
+        </div>
 
         <div class="eyebrow">SIGNALS / STRATEGY / INTERPRETATION</div>
         <h1>AIの変化を、<br>情報ではなく意味として届ける。</h1>
