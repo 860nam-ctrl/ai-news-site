@@ -5,97 +5,372 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>週刊AIトレンドレポート</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background: #f7f7f7;
-      color: #222;
-    }
-
-    header {
-      background: #111;
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 14px;
-      padding: 24px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
-
-    h1, h2 {
-      margin-top: 0;
-    }
-
-    .date {
-      color: #666;
-      font-size: 14px;
-      margin-bottom: 8px;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    li {
-      margin-bottom: 10px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(180deg, #eef2f8 0%, #f7f9fc 100%);
+      color: #18202a;
     }
 
     a {
-      color: #0b57d0;
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(90, 138, 255, 0.18), transparent 32%),
+        radial-gradient(circle at top right, rgba(111, 66, 193, 0.18), transparent 28%),
+        linear-gradient(135deg, #06080d 0%, #0c1220 45%, #121a2d 100%);
+      color: white;
+      padding: 88px 20px 72px;
     }
 
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: #777;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.2));
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 999px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.86);
+      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p.lead {
+      max-width: 760px;
+      margin: 20px 0 0;
+      font-size: 18px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 999px;
       font-size: 14px;
+      color: rgba(255,255,255,0.92);
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(6px);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: -36px auto 0;
+      padding: 0 20px 60px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 22px;
+      margin-bottom: 22px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.86);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 14px 40px rgba(18, 29, 52, 0.08);
+    }
+
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+      color: #0f1728;
+    }
+
+    .card p {
+      margin: 0;
+      line-height: 1.9;
+      color: #4b5565;
+      font-size: 16px;
+    }
+
+    .date-badge {
+      display: inline-block;
+      margin-bottom: 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #2754c5;
+      background: #edf3ff;
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 34px 0 18px;
+    }
+
+    .section-title h3 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+      color: #0f1728;
+    }
+
+    .section-title span {
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    .article-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .article-card {
+      display: block;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 12px 32px rgba(18, 29, 52, 0.06);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      color: inherit;
+    }
+
+    .article-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 38px rgba(18, 29, 52, 0.10);
+      border-color: rgba(39, 84, 197, 0.18);
+    }
+
+    .article-meta {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2754c5;
+      margin-bottom: 10px;
+      letter-spacing: 0.03em;
+    }
+
+    .article-card h4 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      line-height: 1.4;
+      color: #111827;
+      letter-spacing: -0.02em;
+    }
+
+    .article-card p {
+      margin: 0;
+      color: #5b6472;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .article-link {
+      display: inline-block;
+      margin-top: 16px;
+      color: #2754c5;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .tag-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: #eef3ff;
+      color: #2348aa;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid rgba(39, 84, 197, 0.08);
+    }
+
+    .sub-card {
+      margin-top: 18px;
+      padding: 20px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+      border: 1px solid rgba(39, 84, 197, 0.08);
+    }
+
+    .sub-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #2348aa;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 18px 20px 48px;
+      color: #7a8393;
+      font-size: 14px;
+    }
+
+    @media (max-width: 840px) {
+      .hero {
+        padding: 72px 20px 56px;
+      }
+
+      .container {
+        margin-top: -24px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card,
+      .article-card {
+        padding: 22px;
+      }
+
+      .hero p.lead {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>週刊AIトレンドレポート</h1>
-    <p>AIニュースを日本語で整理して掲載するポータルサイト</p>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">WEEKLY AI TREND REPORT</div>
+      <h1>週刊AIトレンドレポート</h1>
+      <p class="lead">
+        AIの変化を、日本語で整理し、解釈し、接続する。
+        研究・産業・生成AI・AI哲学を横断して読むためのポータルサイト。
+      </p>
+      <div class="hero-tags">
+        <span class="hero-tag">研究ブレークスルー</span>
+        <span class="hero-tag">ビジネス / 産業動向</span>
+        <span class="hero-tag">生成AI</span>
+        <span class="hero-tag">AI哲学</span>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <div class="card">
-      <div class="date">2026-03-24</div>
-      <h2>ようこそ</h2>
-      <p>このサイトでは、AI関連のニュースを「論文」「ビジネス」「生成AI」「AI哲学」の切り口でまとめていきます。</p>
-    </div>
+  <main class="container">
+    <section class="grid">
+      <div class="card">
+        <span class="date-badge">2026-03-25 更新</span>
+        <h2>ようこそ</h2>
+        <p>
+          このサイトでは、AI関連のニュースを「論文」「ビジネス」「生成AI」「AI哲学」の切り口でまとめています。
+          単なる情報の転載ではなく、何が起きているのか、なぜ重要なのかまで見通せる構成を目指しています。
+        </p>
+      </div>
 
-   <div class="card">
-  <h2>最新記事</h2>
-  <ul>
-    <li><a href="posts/2026-03-25.html">2026-03-25 のAIニュース</a></li>
-    <li><a href="posts/2026-03-24.html">2026-03-24 のAIニュース</a></li>
-  </ul>
-</div>
+      <div class="card">
+        <h2>このサイトの視点</h2>
+        <p>
+          情報量が増え続ける時代だからこそ、必要なのは解釈です。
+          AIニュースを「ただ追う」ためではなく、「流れを読む」ための場所として設計しています。
+        </p>
+        <div class="sub-card">
+          <strong>キーワード</strong>
+          情報 / 解釈 / 戦略 / エージェント / AI最適化
+        </div>
+      </div>
+    </section>
 
-    <div class="card">
-      <h2>カテゴリ</h2>
-      <p>論文 / ビジネス / 生成AI / AI哲学</p>
-    </div>
+    <section>
+      <div class="section-title">
+        <h3>最新記事</h3>
+        <span>Latest Posts</span>
+      </div>
+
+      <div class="article-list">
+        <a class="article-card" href="posts/2026-03-25.html">
+          <div class="article-meta">2026-03-25</div>
+          <h4>AI研究の自己強化ループとエージェント時代の加速</h4>
+          <p>
+            研究ブレークスルー、MicrosoftのエージェントOS化、生成AIの進化、
+            そしてAIを設計する側へ移るための戦略インサイトを整理。
+          </p>
+          <span class="article-link">記事を読む →</span>
+        </a>
+
+        <a class="article-card" href="posts/2026-03-24.html">
+          <div class="article-meta">2026-03-24</div>
+          <h4>2026-03-24 のAIニュース</h4>
+          <p>
+            論文、ビジネス、生成AI、AI哲学の4カテゴリで整理した日次アーカイブ。
+          </p>
+          <span class="article-link">記事を読む →</span>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h3>カテゴリ</h3>
+        <span>Topics</span>
+      </div>
+
+      <div class="card">
+        <div class="tag-wrap">
+          <span class="tag">論文</span>
+          <span class="tag">ビジネス</span>
+          <span class="tag">生成AI</span>
+          <span class="tag">AI哲学</span>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer>
+  <footer class="footer">
     © 2026 AI Trend Report
   </footer>
 </body>
