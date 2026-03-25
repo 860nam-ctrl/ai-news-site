@@ -25,9 +25,9 @@
       position: relative;
       overflow: hidden;
       color: white;
-      padding: 88px 20px 72px;
+      padding: 56px 20px 42px;
       background:
-        linear-gradient(rgba(6, 10, 18, 0.58), rgba(6, 10, 18, 0.72)),
+        linear-gradient(rgba(6, 10, 18, 0.48), rgba(6, 10, 18, 0.64)),
         url("images/header-bg.png") center center / cover no-repeat;
     }
 
@@ -36,10 +36,10 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
       background-size: 34px 34px;
-      opacity: 0.22;
+      opacity: 0.18;
       pointer-events: none;
     }
 
@@ -49,19 +49,24 @@
       max-width: 1120px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 32px;
-      align-items: center;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .hero-left {
+      padding-top: 6px;
     }
 
     .logo-mark {
-      display: inline-flex;
+      display: flex;
+      justify-content: flex-start;
       align-items: center;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .logo-mark img {
-      max-width: 520px;
+      max-width: 300px;
       width: 100%;
       height: auto;
       display: block;
@@ -69,73 +74,75 @@
 
     .eyebrow {
       display: inline-block;
-      margin-bottom: 18px;
-      padding: 8px 14px;
-      border: 1px solid rgba(255,255,255,0.18);
+      margin-bottom: 14px;
+      padding: 7px 12px;
+      border: 1px solid rgba(255,255,255,0.16);
       border-radius: 999px;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.88);
-      background: rgba(255,255,255,0.06);
+      font-size: 11px;
+      letter-spacing: 0.10em;
+      color: rgba(255,255,255,0.86);
+      background: rgba(255,255,255,0.05);
       backdrop-filter: blur(8px);
     }
 
     .hero h1 {
       margin: 0;
-      font-size: clamp(34px, 5vw, 58px);
-      line-height: 1.08;
-      letter-spacing: -0.04em;
+      max-width: 640px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.18;
+      letter-spacing: -0.03em;
       font-weight: 700;
-      text-shadow: 0 8px 30px rgba(0,0,0,0.28);
+      text-shadow: 0 8px 24px rgba(0,0,0,0.20);
     }
 
     .hero p.lead {
-      max-width: 720px;
-      margin: 18px 0 0;
-      font-size: 18px;
+      max-width: 700px;
+      margin: 14px 0 0;
+      font-size: 15px;
       line-height: 1.9;
       color: rgba(255,255,255,0.86);
-      text-shadow: 0 4px 18px rgba(0,0,0,0.22);
+      text-shadow: 0 4px 16px rgba(0,0,0,0.18);
     }
 
     .hero-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 28px;
+      margin-top: 22px;
     }
 
     .hero-tag {
       display: inline-flex;
       align-items: center;
-      padding: 10px 14px;
+      padding: 9px 13px;
       border-radius: 999px;
-      font-size: 14px;
-      color: rgba(255,255,255,0.95);
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(255,255,255,0.08);
+      font-size: 13px;
+      color: rgba(255,255,255,0.94);
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.07);
       backdrop-filter: blur(8px);
     }
 
     .hero-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%);
-      border: 1px solid rgba(255,255,255,0.14);
+      margin-top: 8px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 100%);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: 28px;
-      padding: 24px;
+      padding: 20px;
       backdrop-filter: blur(12px);
       box-shadow: 0 18px 46px rgba(0,0,0,0.22);
     }
 
     .thumb {
-      min-height: 320px;
-      border-radius: 22px;
-      padding: 22px;
+      min-height: 270px;
+      border-radius: 20px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       background:
         linear-gradient(180deg, rgba(8, 14, 24, 0.34), rgba(8, 14, 24, 0.62)),
-        url("images/header-bg.jpg") center center / cover no-repeat;
+        url("images/header-bg.png") center center / cover no-repeat;
       border: 1px solid rgba(255,255,255,0.10);
       position: relative;
       overflow: hidden;
@@ -146,8 +153,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at top right, rgba(130, 173, 255, 0.16), transparent 26%),
-        radial-gradient(circle at bottom left, rgba(147, 112, 219, 0.10), transparent 22%);
+        radial-gradient(circle at top right, rgba(130, 173, 255, 0.12), transparent 26%),
+        radial-gradient(circle at bottom left, rgba(147, 112, 219, 0.08), transparent 22%);
       pointer-events: none;
     }
 
@@ -159,46 +166,46 @@
 
     .thumb-label {
       display: inline-block;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.12em;
       color: #c8dcff;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .thumb-date {
-      font-size: 13px;
+      font-size: 12px;
       color: rgba(255,255,255,0.76);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .thumb h3 {
       margin: 0;
-      font-size: 30px;
-      line-height: 1.08;
-      letter-spacing: -0.04em;
+      font-size: 22px;
+      line-height: 1.16;
+      letter-spacing: -0.03em;
       color: white;
-      text-shadow: 0 6px 22px rgba(0,0,0,0.26);
+      text-shadow: 0 6px 20px rgba(0,0,0,0.22);
     }
 
     .thumb p {
-      margin: 12px 0 0;
+      margin: 10px 0 0;
       color: rgba(255,255,255,0.82);
-      line-height: 1.8;
-      font-size: 14px;
+      line-height: 1.75;
+      font-size: 13px;
     }
 
     .thumb-link {
       display: inline-block;
-      margin-top: 18px;
+      margin-top: 16px;
       color: #d8e6ff;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .container {
       max-width: 1120px;
-      margin: -28px auto 0;
+      margin: -10px auto 0;
       padding: 0 20px 60px;
       position: relative;
       z-index: 2;
@@ -212,7 +219,7 @@
     }
 
     .card {
-      background: rgba(255,255,255,0.90);
+      background: rgba(255,255,255,0.92);
       border: 1px solid rgba(15, 23, 42, 0.06);
       backdrop-filter: blur(10px);
       border-radius: 24px;
@@ -339,27 +346,28 @@
       }
 
       .hero {
-        padding: 72px 20px 56px;
+        padding: 48px 20px 38px;
       }
 
       .container {
-        margin-top: -18px;
-      }
-
-      .thumb {
-        min-height: 260px;
+        margin-top: 0;
       }
 
       .logo-mark img {
-        max-width: 340px;
+        max-width: 240px;
       }
 
       .hero h1 {
-        font-size: 38px;
+        font-size: 30px;
+        max-width: 100%;
       }
 
       .hero p.lead {
-        font-size: 16px;
+        font-size: 14px;
+      }
+
+      .thumb {
+        min-height: 240px;
       }
     }
   </style>
@@ -367,7 +375,7 @@
 <body>
   <header class="hero">
     <div class="hero-inner">
-      <div>
+      <div class="hero-left">
         <div class="logo-mark">
           <img src="images/logo-ai-insight-journal-simple.png" alt="AI INSIGHT JOURNAL logo">
         </div>
