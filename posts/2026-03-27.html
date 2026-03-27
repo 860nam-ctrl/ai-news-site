@@ -1,1 +1,670 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-03-27 のAIニュース | AI INSIGHT JOURNAL</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(180deg, #eef2f8 0%, #f7f9fc 100%);
+      color: #18202a;
+      line-height: 1.85;
+    }
+
+    a {
+      text-decoration: none;
+      color: #2754c5;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      padding: 38px 20px 26px;
+      background:
+        linear-gradient(rgba(6, 10, 18, 0.50), rgba(6, 10, 18, 0.66)),
+        url("../images/header-bg.png") center center / cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .logo-mark {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 10px;
+      margin-left: -20px;
+    }
+
+    .logo-mark img {
+      max-width: 760px;
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 7px 12px;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.10em;
+      color: rgba(255,255,255,0.86);
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(26px, 3.2vw, 38px);
+      line-height: 1.16;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+      text-shadow: 0 8px 24px rgba(0,0,0,0.20);
+    }
+
+    .hero p.lead {
+      max-width: 760px;
+      margin: 12px 0 0;
+      font-size: 14px;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.86);
+      text-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.94);
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(8px);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 16px;
+      color: #d8e6ff;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 18px 20px 60px;
+    }
+
+    .intro-card,
+    .section-card,
+    .summary-card {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 14px 40px rgba(18, 29, 52, 0.08);
+      margin-bottom: 20px;
+    }
+
+    .intro-card h2,
+    .section-card h2,
+    .summary-card h2 {
+      margin: 0 0 14px;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+      color: #0f1728;
+    }
+
+    .intro-card p,
+    .section-card p,
+    .summary-card p {
+      margin: 0 0 12px;
+      color: #4b5565;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .section-title {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #edf3ff;
+      color: #2754c5;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .news-block {
+      padding: 20px 0;
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
+    }
+
+    .news-block:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .news-meta {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #2754c5;
+      background: #edf3ff;
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+
+    .news-block h3 {
+      margin: 0 0 12px;
+      font-size: 23px;
+      line-height: 1.42;
+      letter-spacing: -0.02em;
+      color: #111827;
+    }
+
+    .point-box {
+      margin-top: 16px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+      border: 1px solid rgba(39, 84, 197, 0.08);
+    }
+
+    .point-box strong {
+      display: block;
+      margin-bottom: 10px;
+      color: #2348aa;
+      font-size: 14px;
+    }
+
+    ul {
+      margin: 0 0 12px;
+      padding-left: 20px;
+      color: #4b5565;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .source {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #5b6472;
+      word-break: break-all;
+    }
+
+    .source strong {
+      color: #111827;
+    }
+
+    .summary-card {
+      background:
+        radial-gradient(circle at top right, rgba(90, 138, 255, 0.10), transparent 35%),
+        rgba(255,255,255,0.92);
+    }
+
+    .highlight {
+      font-size: 19px;
+      font-weight: 700;
+      color: #0f1728;
+      line-height: 1.7;
+    }
+
+    .more-reading-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .more-reading-card {
+      display: block;
+      padding: 16px;
+      border-radius: 16px;
+      background: #f7faff;
+      border: 1px solid rgba(39,84,197,0.08);
+      color: #2348aa;
+    }
+
+    .more-reading-card strong {
+      display: block;
+      margin-top: 6px;
+      color: #111827;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 18px 20px 48px;
+      color: #7a8393;
+      font-size: 14px;
+    }
+
+    @media (max-width: 920px) {
+      .hero {
+        padding: 30px 20px 22px;
+      }
+
+      .logo-mark {
+        margin-left: -8px;
+      }
+
+      .logo-mark img {
+        max-width: 420px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+        max-width: 100%;
+      }
+
+      .hero p.lead {
+        font-size: 14px;
+      }
+
+      .intro-card,
+      .section-card,
+      .summary-card {
+        padding: 22px;
+        border-radius: 20px;
+      }
+
+      .news-block h3 {
+        font-size: 21px;
+      }
+
+      .intro-card h2,
+      .section-card h2,
+      .summary-card h2 {
+        font-size: 23px;
+      }
+
+      .more-reading-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="logo-mark">
+        <img src="../images/logo-ai-insight-journal-simple.png" alt="AI INSIGHT JOURNAL logo">
+      </div>
+
+      <div class="eyebrow">DAILY AI DIGEST</div>
+      <h1>2026-03-27 のAIニュース</h1>
+      <p class="lead">
+        生成AIからエージェントAIへ、さらに集団AIへ。
+        今日のAI動向を、研究・業界・生成AI・戦略の観点から整理した日次アーカイブ。
+      </p>
+
+      <div class="hero-meta">
+        <span class="hero-tag">研究ブレークスルー</span>
+        <span class="hero-tag">ビジネス / 産業動向</span>
+        <span class="hero-tag">生成AI</span>
+        <span class="hero-tag">AI哲学 / 戦略</span>
+      </div>
+
+      <a class="back-link" href="../index.html">← トップへ戻る</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro-card">
+      <h2>今日の概要</h2>
+      <p>
+        現在のAIは、単なる生成ツールではなく、研究主体・実行主体・協調主体へと変化している。
+        AIがAI開発そのものを担う自己強化ループ、企業実装における責任あるAI、
+        複数エージェントの群れとしての知能、そして業務完結型AIの標準化が同時進行している。
+      </p>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">① 研究ブレークスルー</div>
+
+      <article class="news-block">
+        <div class="news-meta">研究</div>
+        <h3>AIが「AI開発そのもの」を担うフェーズへ</h3>
+        <p>
+          最新研究では、AIがコーディング・数学・実験設計を担い、
+          AI自身がAIを改良する自己強化ループの可能性が現実視されている。
+          これは、AIがツールから研究主体へ移行することを意味する。
+        </p>
+        <ul>
+          <li>AIはツールから「研究主体」へ進化</li>
+          <li>一部の高度AIは非公開化の可能性</li>
+          <li>技術進化が指数関数的に加速する懸念</li>
+        </ul>
+        <div class="point-box">
+          <strong>示唆</strong>
+          「人が考えてAIが実行」から、
+          AIに思考させる設計へ移行する局面。
+          プロンプト設計だけでなく構造設計そのものが重要になる。
+        </div>
+        <p class="source">
+          <strong>Source:</strong>
+          <a href="https://arxiv.org/abs/2603.03338" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2603.03338</a>
+        </p>
+      </article>
+
+      <article class="news-block">
+        <div class="news-meta">研究 / Responsible AI</div>
+        <h3>Responsible AI：ビジネス実装の核心テーマに</h3>
+        <p>
+          研究では、AI導入の鍵は性能ではなく、
+          透明性・説明性・持続可能性（Green AI）にあると指摘されている。
+          特にEUのAI規制環境では、企業が説明責任を負うことが前提になる。
+        </p>
+        <ul>
+          <li>EU AI規制により企業は説明責任を負う</li>
+          <li>軽量モデル・ローカルAIの重要性上昇</li>
+          <li>「安全に使えるか」が競争力</li>
+        </ul>
+        <div class="point-box">
+          <strong>示唆</strong>
+          ブランド価値は「AIの使い方の信頼性」と結びつく。
+          倫理と戦略をあわせて発信すること自体が差別化要素になる。
+        </div>
+        <p class="source">
+          <strong>Source:</strong>
+          <a href="https://arxiv.org/abs/2602.13244" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2602.13244</a>
+        </p>
+      </article>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">② ビジネス / 産業動向</div>
+
+      <article class="news-block">
+        <div class="news-meta">ビジネス / 集団AI</div>
+        <h3>AIエージェント「群れ（Swarm）」時代へ</h3>
+        <p>
+          OpenAI支援の新興企業が、数千のAIエージェントを協調させるシステムを開発している。
+          単体AIの性能競争ではなく、集団知としてのAIへ重心が移りつつある。
+        </p>
+        <ul>
+          <li>2,000体のAIが協力して予測</li>
+          <li>金融・政策・研究分野で応用</li>
+          <li>「単体AI → 集団知AI」へ</li>
+        </ul>
+        <div class="point-box">
+          <strong>示唆</strong>
+          1つのAIに依存するのではなく、
+          編集・分析・戦略などの役割分担でAIを組むことが差になる。
+        </div>
+        <p class="source">
+          <strong>Source:</strong>
+          <a href="https://www.wsj.com/tech/ai/openai-backs-new-ai-startup-seeking-bot-army-breakthroughs-a0b1fedc" target="_blank" rel="noopener noreferrer">https://www.wsj.com/tech/ai/openai-backs-new-ai-startup-seeking-bot-army-breakthroughs-a0b1fedc</a>
+        </p>
+      </article>
+
+      <article class="news-block">
+        <div class="news-meta">ビジネス / 業務自動化</div>
+        <h3>Alibaba：完全自律型ビジネスAIを展開</h3>
+        <p>
+          Alibabaの「Accio Work」は、業務を丸ごと自動化するAIプラットフォームとして登場した。
+          ノーコードで業務実行が可能であり、中小企業向けにセキュリティ制御付き自律AIを提供する。
+        </p>
+        <ul>
+          <li>ノーコードで業務実行</li>
+          <li>SME（中小企業）向け</li>
+          <li>セキュリティ制御付き自律AI</li>
+        </ul>
+        <div class="point-box">
+          <strong>示唆</strong>
+          コンテンツ制作だけでなく、
+          運用・分析・改善まで自動化できる時代が本格化している。
+        </div>
+        <p class="source">
+          <strong>Source:</strong>
+          <a href="https://www.reuters.com/business/finance/alibaba-launches-latest-agentic-ai-platform-with-international-units-accio-work-2026-03-23/" target="_blank" rel="noopener noreferrer">https://www.reuters.com/business/finance/alibaba-launches-latest-agentic-ai-platform-with-international-units-accio-work-2026-03-23/</a>
+        </p>
+      </article>
+
+      <article class="news-block">
+        <div class="news-meta">ビジネス / エンタープライズ</div>
+        <h3>Oracle：AIは「人間拡張ツール」と明言</h3>
+        <p>
+          Oracleは、AIを人間の仕事を奪う存在ではなく、
+          意思決定と戦略を強化する存在として位置づけている。
+          AIが分析・予測・調整を担い、人間は戦略と判断に集中する構図だ。
+        </p>
+        <ul>
+          <li>AIは分析・予測・調整を担当</li>
+          <li>人間は戦略・判断に集中</li>
+          <li>エンタープライズAIの拡大</li>
+        </ul>
+        <div class="point-box">
+          <strong>示唆</strong>
+          AIを代替装置ではなく、
+          思考増幅装置として設計する発想が重要になる。
+        </div>
+        <p class="source">
+          <strong>Source:</strong>
+          <a href="https://www.techradar.com/pro/ai-is-not-here-to-replace-expertise-its-here-to-elevate-oracle-ceo-says-the-best-still-to-come-when-it-comes-to-agentic-innovation" target="_blank" rel="noopener noreferrer">https://www.techradar.com/pro/ai-is-not-here-to-replace-expertise-its-here-to-elevate-oracle-ceo-says-the-best-still-to-come-when-it-comes-to-agentic-innovation</a>
+        </p>
+      </article>
+
+      <article class="news-block">
+        <div class="news-meta">ゲーム業界 / クリエイティブ</div>
+        <h3>ゲーム業界：AIは裏側で使う方向へ</h3>
+        <p>
+          Capcomは、生成AIを直接コンテンツに使わない方針を表明した。
+          ただし制作効率向上にはAIを使うとしており、
+          表に出すAIと裏で使うAIを分ける姿勢が鮮明になっている。
+        </p>
+        <ul>
+          <li>品質・クリエイティブ保護を優先</li>
+          <li>AIは制作効率向上に限定</li>
+          <li>ユーザー体験への慎重姿勢</li>
+        </ul>
+        <div class="point-box">
+          <strong>示唆</strong>
+          “人間の作品”としての価値を保ちながら、
+          裏側ではAIで効率化する設計がより重要になる。
+        </div>
+        <p class="source">
+          <strong>Source:</strong>
+          <a href="https://www.pcgamer.com/gaming-industry/capcom-says-it-will-not-implement-assets-generated-by-ai-into-our-game-content-but-still-plans-to-use-ai-to-enhance-efficiency-and-boost-productivity-in-game-development/" target="_blank" rel="noopener noreferrer">https://www.pcgamer.com/gaming-industry/capcom-says-it-will-not-implement-assets-generated-by-ai-into-our-game-content-but-still-plans-to-use-ai-to-enhance-efficiency-and-boost-productivity-in-game-development/</a>
+        </p>
+      </article>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">③ 新しい生成AI・ツール</div>
+
+      <article class="news-block">
+        <div class="news-meta">生成AI</div>
+        <h3>GPT-5.4：業務実行型AIの標準化</h3>
+        <p>
+          100万トークンとPC操作能力を持つモデルが登場し、
+          AIがタスクを完結するフェーズに入っている。
+          長文理解とツール操作が統合され、エージェントの中核モデルになりつつある。
+        </p>
+        <ul>
+          <li>長文理解＋ツール操作</li>
+          <li>作業を“実行”できる</li>
+          <li>エージェントの中核モデル</li>
+        </ul>
+        <div class="point-box">
+          <strong>示唆</strong>
+          記事生成だけでなく、
+          サイト運営・分析・改善まで自動化可能になる。
+        </div>
+        <p class="source">
+          <strong>Source:</strong>
+          <a href="https://champaignmagazine.com/2026/03/08/ai-by-ai-weekly-top-5-march-2-8-2026/" target="_blank" rel="noopener noreferrer">https://champaignmagazine.com/2026/03/08/ai-by-ai-weekly-top-5-march-2-8-2026/</a>
+        </p>
+      </article>
+
+      <article class="news-block">
+        <div class="news-meta">生成AI / カスタマイズ</div>
+        <h3>Sakana AI：LoRA生成を一発で実現</h3>
+        <p>
+          Doc-to-LoRA / Text-to-LoRA により、
+          モデル微調整を即時生成する流れが見えてきた。
+          従来の重いファインチューニングを経ずに、軽量で高速なカスタマイズが可能になる。
+        </p>
+        <ul>
+          <li>ファインチューニング不要</li>
+          <li>軽量・高速カスタマイズ</li>
+          <li>個人AIの最適化が容易</li>
+        </ul>
+        <div class="point-box">
+          <strong>示唆</strong>
+          自分専用AIを量産できる時代に入りつつある。
+          プロジェクトごとにAIを最適化する設計が現実になる。
+        </div>
+        <p class="source">
+          <strong>Source:</strong>
+          <a href="https://radicaldatascience.wordpress.com/2026/03/10/ai-news-briefs-bulletin-board-for-march-2026/" target="_blank" rel="noopener noreferrer">https://radicaldatascience.wordpress.com/2026/03/10/ai-news-briefs-bulletin-board-for-march-2026/</a>
+        </p>
+      </article>
+
+      <article class="news-block">
+        <div class="news-meta">Agentic AI</div>
+        <h3>Agentic AI：生成AIを超える次フェーズ</h3>
+        <p>
+          AIが自律的に計画・実行する Agentic AI が主流化しつつある。
+          ゴール設定から実行までを自動で担い、複数ツールと連携しながらワークフロー全体を代替する。
+        </p>
+        <ul>
+          <li>ゴール設定 → 実行まで自動</li>
+          <li>複数ツールと連携</li>
+          <li>ワークフロー全体を代替</li>
+        </ul>
+        <div class="point-box">
+          <strong>示唆</strong>
+          コンテンツ制作も、
+          “プロジェクト単位でAIに任せる”設計へ移っていく。
+        </div>
+        <p class="source">
+          <strong>Source:</strong>
+          <a href="https://www.switas.com/articles/the-rise-of-agentic-ai-5-breakthroughs-reshaping-business-in-march-2026" target="_blank" rel="noopener noreferrer">https://www.switas.com/articles/the-rise-of-agentic-ai-5-breakthroughs-reshaping-business-in-march-2026</a>
+        </p>
+      </article>
+    </section>
+
+    <section class="section-card">
+      <div class="section-title">④ 戦略インサイト</div>
+
+      <article class="news-block">
+        <div class="news-meta">戦略インサイト</div>
+        <h3>勝ち筋は「AIの編成力」</h3>
+        <p>
+          モデル性能差は縮小しつつあり、
+          これからの競争力は組み合わせに移る。
+          AIチーム設計者になることが重要になる。
+        </p>
+      </article>
+
+      <article class="news-block">
+        <div class="news-meta">戦略インサイト</div>
+        <h3>コンテンツは「意味レイヤー」で勝負</h3>
+        <p>
+          情報はAIが生成する時代に入り、
+          人間は解釈と文脈を与える側になる。
+          AIニュース＋戦略解説メディアという形が有効になる。
+        </p>
+      </article>
+
+      <article class="news-block">
+        <div class="news-meta">収益構造</div>
+        <h3>収益構造の最適解</h3>
+        <ul>
+          <li>無料：日刊ブリーフ</li>
+          <li>有料：週次インサイト</li>
+          <li>高単価：AI設計支援</li>
+        </ul>
+      </article>
+
+      <article class="news-block">
+        <div class="news-meta">実行プラン</div>
+        <h3>即実行できる構成</h3>
+        <ul>
+          <li>GitHub Pages（自動更新）</li>
+          <li>X / note 連携</li>
+          <li>AIで記事 → 投稿 → 分析まで自動化</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="summary-card">
+      <h2>総括</h2>
+      <p class="highlight">
+        現在のAIの本質的変化は明確だ。  
+        生成AI → エージェントAI → 集団AI（Swarm）
+      </p>
+      <p>
+        そして重要なのはこれに尽きる。  
+        <strong>AIを使う時代は終わり、AIを“構成・運用する人”が勝つ時代に入った。</strong>
+      </p>
+    </section>
+
+    <section class="summary-card">
+      <h2>More Reading</h2>
+      <div class="more-reading-grid">
+        <a class="more-reading-card" href="2026-03-26.html">
+          ← 前の記事
+          <strong>2026-03-26 のAIニュース</strong>
+        </a>
+        <a class="more-reading-card" href="../index.html">
+          トップページへ
+          <strong>最新一覧に戻る</strong>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><a href="../index.html">トップページへ戻る</a></p>
+    <p>© 2026 AI INSIGHT JOURNAL</p>
+  </footer>
+</body>
+</html>
